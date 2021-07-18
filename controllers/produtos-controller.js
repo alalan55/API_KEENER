@@ -30,7 +30,7 @@ exports.createProdutos = (req, res, next)=>{
                 (error, resultado, field) => {
                     conn.release(); //super importante faze isso, para ele liberar a conexão quando entrar aqui no callback
                     
-                   if(error) {return res.status(500).send({error: error})}
+                   if(error) {return res.status(500).send({error: error, message: 'Problemas para inserir o produto na base de dados'})}
     
                     res.status(201).send({
                         mensagem: 'Produto Inserido com sucesso',

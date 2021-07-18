@@ -1,5 +1,5 @@
 const nomeValido = (value) =>{
-    let nomeEhValido = value.length > 3 ? true : false
+    let nomeEhValido = String(value).length > 3 ? true : false
     return nomeEhValido
 }
 const emailValido = (value) =>{
@@ -7,10 +7,9 @@ const emailValido = (value) =>{
     
 }
 const senhaValida = (value) =>{
-    let senhaEhValida = false;
-
+    let senhaEhValida = false
     let regex = /^(?=.*[@!#$%^&*()/\\])[@!#$%^&*()/\\a-zA-Z0-9]{8,20}$/; //Necessário ter 8 caracteres ou mais e um caracter especial
-    let senhaMinimoOitoCaracteres = value.length > 8 ? true : false
+    let senhaMinimoOitoCaracteres = String(value).length > 8 ? true : false
 
     if(senhaMinimoOitoCaracteres){
         senhaEhValida = regex.test(String(value))

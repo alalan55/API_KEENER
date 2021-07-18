@@ -31,7 +31,8 @@ exports.cadastroUsuario = (req, res, next) => {
                                         id_usuario: results.insetId,
                                         email: req.body.email,
                                         nome: req.body.nome
-                                    }
+                                    },
+                                    status: 201
                                 }
     
                                 return res.status(201).send(response)
@@ -78,7 +79,7 @@ exports.login = (req, res, next) =>{
                     {
                         expiresIn: "1h"
                     });
-                    return res.status(200).send({mensagem: 'Usuário autenticado com sucesso', token: token, nome: name})
+                    return res.status(200).send({mensagem: 'Usuário autenticado com sucesso', token: token, nome: name, status: 200})
                 }
               //  return res.status(401).send({mensagem: 'Falha na autenticação'})
             })
