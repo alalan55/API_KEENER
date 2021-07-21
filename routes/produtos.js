@@ -7,7 +7,6 @@ const produtosController = require('../controllers/produtos-controller')
 
 router.get('/',produtosController.getProdutos)
 
-//INSERE NOVO PRODUTO
 router.post('/', login.obrigatorio, produtosController.createProdutos )
 
 router.get('/:id', (req, res)=>{
@@ -30,8 +29,6 @@ router.get('/:id', (req, res)=>{
 
 router.patch('/:id',produtosController.findProduto )
 
-
 router.delete('/', login.obrigatorio,produtosController.deleteProduto )
-
 
 module.exports = router
