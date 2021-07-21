@@ -1,6 +1,6 @@
 const mysql = require('../mysql').pool
-const bcrypt = require('bcrypt') //usamos para criptografar senha
-const jwt = require('jsonwebtoken') //para o token do usuário
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const userValidator = require('../validators/user-validators')
 
 exports.cadastroUsuario = (req, res, next) => {
@@ -16,7 +16,7 @@ exports.cadastroUsuario = (req, res, next) => {
                     res.status(401).send({ mensagem: 'Usuário já cadastrado' })
                 } else {
     
-                    bcrypt.hash(req.body.senha, 10, (errBcrypt, hash) => { //ele coloca 10 caracteres aleatorios no hash, para não ser encontrado por nenhuma biblioteca
+                    bcrypt.hash(req.body.senha, 10, (errBcrypt, hash) => {
                         if (errBcrypt) { return res.status(500).send({ error: errBcrypt }) }
     
                         conn.query(` INSERT INTO usuarios (email, senha, nome) VALUES (?,?,?)`,
@@ -74,14 +74,12 @@ exports.login = (req, res, next) =>{
                         id_usuario: results[0].id_usuario,
                         email: results[0].email
                     }, 
-                   // process.env.JWT_KEY, verificar porque não está conseguindo ler as variáveis de ambiente
                    'segredo',
                     {
                         expiresIn: "1h"
                     });
                     return res.status(200).send({mensagem: 'Usuário autenticado com sucesso', token: token, nome: name, status: 200})
                 }
-              //  return res.status(401).send({mensagem: 'Falha na autenticação'})
             })
         })
     })

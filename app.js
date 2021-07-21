@@ -8,9 +8,8 @@ const rotaUsuarios = require('./routes/usuarios');
 const rotaMovimentacao = require('./routes/movimentacoes');
 
 app.use(morgan('dev'));
-app.use(express.urlencoded({extended: false})) //apenas dados simples
-app.use(express.json()); //json de entrada no body
-
+app.use(express.urlencoded({extended: false}))
+app.use(express.json());
 app.use((req, res, next)=>{
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Accept, Content-Type, Origin, Access-Control-Allow-Headers, Authorization, X-Requested-With'); 
@@ -18,7 +17,6 @@ app.use((req, res, next)=>{
         if(req.method === 'OPTIONS'){
             res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
            app.use(cors());
-          //  return res.status(200).sendStatus({}) problema nesse retorno aqui, validar    
         }
         next();
 })
