@@ -6,10 +6,10 @@ exports.getMovimentacoes = (req, res) =>{
     mysql.getConnection((error, conn) =>{
         if(error){return res.status(500).send({error: error})}
         conn.query(
-           `SELECT p.id_produtos, p.nome, p.quantidade, p.preco, m.descricao, m.fornecedor, m.tipo_movimentacao, m.id_movimentacao
+           `SELECT p.id_produto, p.nome, m.quantidade, p.preco, m.descricao, m.fornecedor, m.tipo_movimentacao, m.id_movimentacao
            FROM produtos as p
            INNER JOIN movimentacoes AS m
-           ON p.id_produtos = m.id_produto;`,
+           ON p.id_produto = m.id_produto;`,
             (error, resultado, fields) => {
 
                 conn.release();
@@ -30,7 +30,7 @@ exports.createMovimentacao = (req, res, next) =>{
 
             if(error){return res.status(500).send({error: error})}
 
-            conn.query('SELECT * FROM produtos WHERE id_produtos = ?',[req.body.id_produto], (error, results) =>{
+            conn.query('SELECT * FROM produtos WHERE id_produto = ?',[req.body.id_produto], (error, results) =>{
 
                 if (error) { return res.status(500).send({ error: error, message: 'Movimentação não encontrada na consulta' }) }
 

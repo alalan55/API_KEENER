@@ -13,7 +13,7 @@ router.get('/:id', (req, res)=>{
     mysql.getConnection((error, conn) =>{
         if(error) {return res.status(500).send({error: error})}
         conn.query(
-            'SELECT * FROM produtos WHERE id_produtos = ?',
+            'SELECT * FROM produtos WHERE id_produto = ?',
             [req.params.id],
             (error, resultado, fields) =>{
                 if(error) {return res.status(500).send({error: error})}

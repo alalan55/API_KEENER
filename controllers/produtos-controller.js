@@ -52,9 +52,9 @@ exports.findProduto = (req, res)=>{
             `UPDATE produtos
                 SET nome = ?
                     preco = ?
-                WHERE id_produtos = ?
+                WHERE id_produto = ?
             `,
-            [req.body.nome, req.body.preco, req.body.id_produtos],
+            [req.body.nome, req.body.preco, req.body.id_produto],
             (error, resultado, fields) =>{
                 conn.release()
                 if(error) {return res.status(500).send({error: error})}
@@ -70,7 +70,7 @@ exports.deleteProduto = (req, res)=>{
     mysql.getConnection((error, conn) =>{
         if(error) {return res.status(500).send({error: error})}
         conn.query(
-            'DELETE from produtos WHERE id_produtos = ?', [req.body.id],
+            'DELETE from produtos WHERE id_produto = ?', [req.body.id],
             (error, resultado, fields) =>{
                 if(error) {return res.status(500).send({error: error})}
 
