@@ -8,3 +8,5 @@ docker run -p 127.0.0.1:3306:3306  --name mysql-mariadb -e MARIADB_ROOT_PASSWORD
 ```
 Após isso, exportar o banco de dados que está dentro da basta 'BD' no projeto para o Mysql workbench , e criar uma conexão local com usuários e senhas 'root'. na na mesma porta
 utilizada para rodar o comando do docker (3306);
+
+Atente-se para trocar as informações
